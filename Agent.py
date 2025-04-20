@@ -54,7 +54,7 @@ def start_capture():
 
     interface = get_best_interface()
     if interface:
-        print(f"🔍 Capture sur l'interface : {interface}")
+        print(f" Capture sur l'interface : {interface}")
         # On ajoute creationflags dans override_popen_kwargs
         creationflags = 0x08000000 if os.name == 'nt' else 0
         capture = pyshark.LiveCapture(
@@ -113,7 +113,7 @@ def show_red_alert(title, message, vt_url=None, block_cmd=None):
     root.mainloop()
 
 
-# 📎 GREASE
+#  GREASE
 GREASE_VALUES = {
     '0x0a0a', '0x1a1a', '0x2a2a', '0x3a3a',
     '0x4a4a', '0x5a5a', '0x6a6a', '0x7a7a',
@@ -156,7 +156,7 @@ def extract_ja3s(packet):
             print(" Pas de couche TLS")
             return None, None
 
-        # 🔍 On tente d'extraire les valeurs directement
+        #   tente d'extraire les valeurs directement
         ja3s_string = getattr(tls, "handshake_ja3s_full", None)
         ja3s_hash = getattr(tls, "handshake_ja3s", None)
 
@@ -218,7 +218,6 @@ def check_threatfox(ioc):
         "query": "search_ioc",
         "search_term": ioc
     }
-
     try:
         response = requests.post(url, json=payload, headers=headers, timeout=5)
         if response.status_code == 200 and "application/json" in response.headers.get("Content-Type", ""):
@@ -265,21 +264,19 @@ def sniff_servers():
                     print(f" From {pkt.ip.src} → {pkt.ip.dst}")
                     print("=" * 50)
                     continue
-
                 seen_ja3s.add(ja3s_digest)
                 if stream_id in client_cache:
                     client_info = client_cache[stream_id]
                     sni = client_info.get('sni', 'Nom de domaine inconnu')
                     app = ja3s_dict.get(ja3s_digest)
-
                     if app:
                         #  JA3S légitime, trouvé dans Salesforce
                         print(f"ℹ JA3S légitime : {app} ({ja3s_digest})")
                     else:
-                        # ❔ Inconnu → on interroge ThreatFox et cherche des signes de menace
+                        #  Inconnu → on interroge ThreatFox et cherche des signes de menace
                         print(f"❔ JA3S inconnu : {ja3s_digest}")
 
-                        # 🔍 Analyse ThreatFox
+                        #  Analyse ThreatFox
                         tf_ip_result = check_threatfox(pkt.ip.src)
                         tf_sni_result = check_threatfox(sni) if sni and sni != "SNI inconnu" else None
                         tf_ja3s_result = check_threatfox(ja3s_digest)
@@ -328,10 +325,10 @@ def sniff_servers():
                                     found = True
                                     break  # stop loop dès qu’une détection est faite
                         if not found:
-                            print("ℹ️ JA3S non listé sur ThreatFox (IP, JA3S ou SNI).")
+                            print(" JA3S non listé sur ThreatFox (IP, JA3S ou SNI).")
 
         except Exception as e:
-            print(f"  Erreur dans sniff_servers : {e}")
+            print(f"Erreur dans sniff_servers : {e}")
             continue
 
 #  Ajout au démarrage Windows
@@ -341,7 +338,7 @@ def add_to_startup(exe_name="Agent.exe"):
     if os.path.exists(exe_path) and not os.path.exists(os.path.join(startup_path, exe_name)):
         shutil.copy(exe_path, startup_path)
 
-# 🪟 Icône système
+#  Icône système
 def create_letter_icon(letter="J"):
     image = Image.new('RGB', (64, 64), 'red')
     draw = ImageDraw.Draw(image)
