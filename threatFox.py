@@ -12,7 +12,7 @@ try:
         data=json.dumps(payload),
         headers={"Content-Type": "application/json"},
         timeout=5,
-        verify=False  # ⚠️ uniquement pour debug, pas en prod
+        verify=False  #  uniquement pour debug, pas en prod
     )
     print(r.json())
 except Exception as e:
