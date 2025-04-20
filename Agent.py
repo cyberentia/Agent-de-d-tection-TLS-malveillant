@@ -121,7 +121,7 @@ GREASE_VALUES = {
     '0xcaca', '0xdada', '0xeaea', '0xfafa'
 }
 
-# 🌐 JA3S CSV load
+#  JA3S CSV load
 def load_ja3s_dictionary():
     """
     Télécharge et charge les correspondances JA3S ↔ App dans un dictionnaire.
@@ -229,9 +229,7 @@ def check_threatfox(ioc):
     except Exception as e:
         print(f" Erreur lors de l'appel à ThreatFox : {e}")
         return None
-
-
-
+        
 def sniff_servers():
     seen_ja3s = set()
     asyncio.set_event_loop(asyncio.new_event_loop())
@@ -336,7 +334,7 @@ def sniff_servers():
             print(f"  Erreur dans sniff_servers : {e}")
             continue
 
-# 🔃 Ajout au démarrage Windows
+#  Ajout au démarrage Windows
 def add_to_startup(exe_name="Agent.exe"):
     startup_path = os.path.join(os.getenv("APPDATA"), r"Microsoft\Windows\Start Menu\Programs\Startup")
     exe_path = os.path.join(os.getcwd(), exe_name)
