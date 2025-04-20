@@ -19,7 +19,7 @@ import win32con
 import psutil
 import time
 
-# 🔍 Masquer les fenêtres de tshark et dumpcap
+#  Masquer les fenêtres de tshark et dumpcap
 def hide_windows_by_name(targets=("tshark.exe", "dumpcap.exe")):
     def enum_window_callback(hwnd, pid_list):
         try:
@@ -64,7 +64,7 @@ def start_capture():
         for packet in capture.sniff_continuously(packet_count=5):
             print(packet)
     else:
-        print("❌ Aucune interface réseau valide trouvée.")
+        print(" Aucune interface réseau valide trouvée.")
 
 #  Fenêtre rouge d’alerte
 import pyperclip
@@ -139,21 +139,21 @@ def load_ja3s_dictionary():
                     ja3_hash, app_name = row
                     ja3s_dict[ja3_hash.strip()] = app_name.strip()
         else:
-            print(f"❌ Échec du téléchargement JA3S ({response.status_code})")
+            print(f" Échec du téléchargement JA3S ({response.status_code})")
     except Exception as e:
-        print(f"⚠️ Erreur lors du chargement de la liste JA3S : {e}")
+        print(f" Erreur lors du chargement de la liste JA3S : {e}")
     return ja3s_dict
 ja3s_dict = load_ja3s_dictionary()
 GREASE_VALUES = {
     "0a0a", "1a1a", "2a2a", "3a3a", "4a4a", "5a5a", "6a6a", "7a7a", "8a8a", "9a9a",
     "aaaa", "baba", "caca", "dada", "eaea", "fafa"
 }
-# 🧠 Extraction JA3S
+#  Extraction JA3S
 def extract_ja3s(packet):
     try:
         tls = getattr(packet, "tls", None)
         if not tls:
-            print("⛔️ Pas de couche TLS")
+            print(" Pas de couche TLS")
             return None, None
 
         # 🔍 On tente d'extraire les valeurs directement
@@ -161,7 +161,7 @@ def extract_ja3s(packet):
         ja3s_hash = getattr(tls, "handshake_ja3s", None)
 
         if not ja3s_string or not ja3s_hash:
-            # 🔁 En fallback : inspecter les records manuellement
+            #  En fallback : inspecter les records manuellement
             records = getattr(tls, "record", [])
             if not isinstance(records, list):
                 records = [records]
@@ -183,10 +183,10 @@ def extract_ja3s(packet):
         return ja3s_string, ja3s_hash
 
     except Exception as e:
-        print(f"⛔ Exception extract_ja3s : {e}")
+        print(f" Exception extract_ja3s : {e}")
         return None, None
 
-# 🧠 Mémoire des ClientHello
+#  Mémoire des ClientHello
 client_cache = {}
 def sniff_clients():
     asyncio.set_event_loop(asyncio.new_event_loop())
@@ -205,9 +205,9 @@ def sniff_clients():
                         'dst': pkt.ip.dst
                     }
                     #  Affichage client
-                  #  print(f"📥 ClientHello - Stream {stream_id}")
-                  #  print(f"🌐 SNI : {sni}")
-                  #  print(f"📦 From {pkt.ip.src} → {pkt.ip.dst}")
+                  #  print(f" ClientHello - Stream {stream_id}")
+                  #  print(f" SNI : {sni}")
+                  #  print(f" From {pkt.ip.src} → {pkt.ip.dst}")
                   #  print("=" * 50)
         except Exception as e:
             continue
@@ -224,10 +224,10 @@ def check_threatfox(ioc):
         if response.status_code == 200 and "application/json" in response.headers.get("Content-Type", ""):
             return response.json()
         else:
-            print(f"⚠️ Réponse inattendue de ThreatFox : {response.status_code}")
+            print(f" Réponse inattendue de ThreatFox : {response.status_code}")
             return None
     except Exception as e:
-        print(f"⚠️ Erreur lors de l'appel à ThreatFox : {e}")
+        print(f" Erreur lors de l'appel à ThreatFox : {e}")
         return None
 
 
@@ -275,7 +275,7 @@ def sniff_servers():
                     app = ja3s_dict.get(ja3s_digest)
 
                     if app:
-                        # 👍 JA3S légitime, trouvé dans Salesforce
+                        #  JA3S légitime, trouvé dans Salesforce
                         print(f"ℹ JA3S légitime : {app} ({ja3s_digest})")
                     else:
                         # ❔ Inconnu → on interroge ThreatFox et cherche des signes de menace
@@ -317,7 +317,7 @@ def sniff_servers():
                                     )
                                     block_cmd = f"New-NetFirewallRule -DisplayName 'Blocage JA3S - {pkt.ip.src}' -Direction Outbound -RemoteAddress {pkt.ip.src} -Action Block -Protocol TCP -Profile Any"
                                     message = (
-                                        f"⚠️ Menace détectée par ThreatFox via {source_name}\n"
+                                        f" Menace détectée par ThreatFox via {source_name}\n"
                                         f"SNI : {sni}\n"
                                         f"IP : {pkt.ip.src}\n"
                                         f"Type : {threat_type} / Confiance : {confidence}\n\n"
@@ -377,7 +377,7 @@ def start_systray():
     threading.Thread(target=sniff_servers, daemon=True).start()
     icon.run()
 
-# 🚀 Lancement
+#  Lancement
 interface = get_best_interface()
 if not interface:
     print(" Aucune interface détectée")
