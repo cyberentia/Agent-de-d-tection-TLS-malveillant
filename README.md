@@ -68,15 +68,15 @@ Risques / Avertissements
 
 Certaines IP détectées peuvent être des services légitimes (Microsoft, Google) déjà compromis ou utilisés à tort
 
-Le blocage automatique via pare-feu peut affecter des services critiques
+Le blocage pare-feu via le code fourni via peut affecter des services critiques
 
 Aucune clé API VirusTotal n’est incluse. Le lien VirusTotal est fourni à titre indicatif pour confirmation.
 
 L’outil est à utiliser en tant qu’assistant d’analyse, et non comme unique outil de décision
 
-Cet agent est une ressource supplémentaire pour améliorer la visibilité sur les connexions réseau
+Cet agent est une ressource supplémentaire qui pourrais améliorer la visibilité sur les connexions réseau
 
-Il aide à détecter des comportements anormaux précoces (ex : JA3S suspects) mais il ne remplace pas une solution complète de cybersécurité
+Il pourrait aider à détecter des comportements anormaux précoces (ex : JA3S suspects) mais il ne remplace pas une solution complète de cybersécurité
 
 Il pourrait aider à réduire la surface d'attaque, mais d'autres protections doivent rester en place (antivirus, EDR, firewalls, surveillance humaine...)
 
