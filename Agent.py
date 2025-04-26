@@ -118,7 +118,11 @@ GREASE_VALUES = {
     '0x0a0a', '0x1a1a', '0x2a2a', '0x3a3a',
     '0x4a4a', '0x5a5a', '0x6a6a', '0x7a7a',
     '0x8a8a', '0x9a9a', '0xaaaa', '0xbaba',
-    '0xcaca', '0xdada', '0xeaea', '0xfafa'
+    '0xcaca', '0xdada', '0xeaea', '0xfafa',
+    "0a0a", "1a1a", "2a2a", "3a3a", "4a4a", 
+    "5a5a", "6a6a", "7a7a", "8a8a", "9a9a",
+    "aaaa", "baba", "caca", "dada", "eaea", 
+    "fafa"
 }
 
 #  JA3S CSV load
@@ -144,10 +148,6 @@ def load_ja3s_dictionary():
         print(f" Erreur lors du chargement de la liste JA3S : {e}")
     return ja3s_dict
 ja3s_dict = load_ja3s_dictionary()
-GREASE_VALUES = {
-    "0a0a", "1a1a", "2a2a", "3a3a", "4a4a", "5a5a", "6a6a", "7a7a", "8a8a", "9a9a",
-    "aaaa", "baba", "caca", "dada", "eaea", "fafa"
-}
 #  Extraction JA3S
 def extract_ja3s(packet):
     try:
