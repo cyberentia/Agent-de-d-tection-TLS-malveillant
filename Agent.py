@@ -281,16 +281,6 @@ def sniff_servers():
                         tf_sni_result = check_threatfox(sni) if sni and sni != "SNI inconnu" else None
                         tf_ja3s_result = check_threatfox(ja3s_digest)
                         found = False
-
-                        # DEBUG : simulation détection
-                       # tf_ip_result = {
-                       #     "query_status": "ok",
-                       #     "data": [{
-                       #         "malware": "FakeRAT",
-                       #         "threat_type": "C2",
-                       #         "confidence_level": "high"
-                       #     }]
-                        #}
                         for source_name, result in [
                             ("IP", tf_ip_result),
                             ("JA3S", tf_ja3s_result),
