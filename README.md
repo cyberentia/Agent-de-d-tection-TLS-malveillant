@@ -4,7 +4,7 @@ JA3S Defender - Agent de détection TLS malveillant
 
   
 
-JA3S Defender est un agent de cybersécurité léger, open-source, permettant de détecter des communications TLS suspectes via l’empreinte JA3S, en interrogeant automatiquement ThreatFox et en suggérant le blocage via le pare-feu Windows.
+JA3S Defender est un agent de cybersécurité léger, open-source, permettant d'aider à détecter des communications TLS suspectes via l’empreinte JA3S, en interrogeant automatiquement ThreatFox et en suggérant le blocage via le pare-feu Windows.
 
 Fonctionnalités principales
 
@@ -32,7 +32,7 @@ Lancer le script Agent.py en environnement Python ou lancer le .exe généré vi
 
 L'outil capture les connexions TLS en réseau sur l'interface choisie (Wi-Fi, Ethernet, etc.)
 
-En cas de menace : une alerte s'affiche + suggestion de blocage
+En cas de menace potentielle : une alerte s'affiche + suggestion de blocage
 
 Mode EXE
 
@@ -56,7 +56,7 @@ pyperclip
 
 Cas d’usage
 
-Audit réseau en entreprise
+Audit réseau 
 
 Détection de C2 (Command & Control) connus
 
@@ -72,11 +72,15 @@ Le blocage automatique via pare-feu peut affecter des services critiques
 
 Aucune clé API VirusTotal n’est incluse. Le lien VirusTotal est fourni à titre indicatif pour confirmation.
 
-L’outil est à utiliser en tant qu’assistant d’analyse, et non comme unique outil de décision.
+L’outil est à utiliser en tant qu’assistant d’analyse, et non comme unique outil de décision
 
-Créé par
+Cet agent est une ressource supplémentaire pour améliorer la visibilité sur les connexions réseau
 
-Martin | Consultant CybersécuritéN'hésitez pas à me contacter pour des versions adaptées en entreprise, ou pour tout accompagnement technique.
+Il aide à détecter des comportements anormaux précoces (ex : JA3S suspects) mais il ne remplace pas une solution complète de cybersécurité
+
+Il pourrait aider à réduire la surface d'attaque, mais d'autres protections doivent rester en place (antivirus, EDR, firewalls, surveillance humaine...)
+
+N'hésitez pas à me contacter pour des versions adaptées en entreprise, ou pour tout accompagnement technique
 
 License
 
