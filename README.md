@@ -80,7 +80,13 @@ Il aide à détecter des comportements anormaux précoces (ex : JA3S suspects) m
 
 Il pourrait aider à réduire la surface d'attaque, mais d'autres protections doivent rester en place (antivirus, EDR, firewalls, surveillance humaine...)
 
+Cet outil est fourni "en l’état", sans aucune garantie d’aucune sorte, explicite ou implicite
+
+L'utilisateur assume tous les risques liés à son utilisation. L'outil doit être utilisé comme un complément d'analyse et ne remplace pas les bonnes pratiques de cybersécurité
+
 N'hésitez pas à me contacter pour des versions adaptées en entreprise, ou pour tout accompagnement technique
+
+Ce projet est destiné à un usage d'apprentissage, d'audit ou de détection complémentaire. Il n'est pas conçu pour protéger de manière exhaustive contre toutes les menaces en environnement de production.
 
 License
 
